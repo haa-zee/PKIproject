@@ -5,7 +5,8 @@ Vajon milyen tutorial információit lenne érdemes használni?
 Van sok, például:
 - https://pki-tutorial.readthedocs.io/en/latest/simple/index.html
 - https://roll.urown.net/ca/index.html
-- https://jamielinux.com/docs/openssl-certificate-authority/index.html  
+- https://jamielinux.com/docs/openssl-certificate-authority/index.html
+
 Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.
 
 Olvasgatva e témában merülnek fel olyan kérdések, hogy
