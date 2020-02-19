@@ -13,6 +13,7 @@ Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [ ] Merjek-e hinni olyan anyagnak, amelyikben a default_md helyén md5, sha1 szerepel?
 - [ ] Mi a helyzet azokkal az oldalakkal, ahol a serial-t egy 'echo 00 >serial' paranccsal intézi el a szerző,
     ahelyett, hogy a sok helyen javasolt 'openssl rand -hex 16 >serial'-t használná legalább?
+- [ ] Az `openssl req` parancs elvileg képes self signed certificate előállítására, de... kérdés, hogy root CA esetén jó ötlet-e a használata? Ugyanis nem update-eli az index fájlt, nem nyúl a serial-hoz sem, csak generál egy privát kulcsot, meg egy self signed tanúsítványt, amelynek néhány paraméterét az openssl.cnf-ből veszi.
 
 
 
