@@ -1,4 +1,18 @@
-# saját CA
+# saját CA  
+
+## Tanácstalanság
+Vajon milyen tutorial információit lenne érdemes használni?
+Van sok, például:
+- https://pki-tutorial.readthedocs.io/en/latest/simple/index.html
+- https://roll.urown.net/ca/index.html
+- https://jamielinux.com/docs/openssl-certificate-authority/index.html
+Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.  
+Olvasgatva e témában merülnek fel olyan kérdések, hogy
+- [ ] Merjek-e hinni olyan anyagnak, amelyikben a default_md helyén md5, sha1 szerepel?
+- [ ] Mi a helyzet azokkal az oldalakkal, ahol a serial-t egy 'echo 00 >serial' paranccsal intézi el a szerző,
+    ahelyett, hogy a sok helyen javasolt 'openssl rand -hex 16 >serial'-t használná legalább?
+
+
 
 ## root CA
 - Könyvtár struktúra kialakítása (openssl.cnf alapján - certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)
