@@ -6,7 +6,8 @@ Van sok, például:
 - https://pki-tutorial.readthedocs.io/en/latest/simple/index.html
 - https://roll.urown.net/ca/index.html
 - https://jamielinux.com/docs/openssl-certificate-authority/index.html
-Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.  
+Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.
+
 Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [ ] Merjek-e hinni olyan anyagnak, amelyikben a default_md helyén md5, sha1 szerepel?
 - [ ] Mi a helyzet azokkal az oldalakkal, ahol a serial-t egy 'echo 00 >serial' paranccsal intézi el a szerző,
