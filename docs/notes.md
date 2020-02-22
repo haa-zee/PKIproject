@@ -39,4 +39,5 @@ Vagy a rootCA ooenssl.cnf-be, vagy az intermediate-be. Érzésem szerint a root�
 
 ## Források
 https://en.m.wikipedia.org/wiki/Public_key_certificate   
+https://en.wikipedia.org/wiki/X.509  
 https://www.openssl.org/docs/man1.1.1/man5/x509v3_config.html   
