@@ -36,10 +36,10 @@ CA-t.
 - https://jamielinux.com/docs/openssl-certificate-authority/index.html
 
 ### Manualok, wiki oldalak
-https://en.m.wikipedia.org/wiki/Public_key_certificate   
-https://en.wikipedia.org/wiki/X.509  
-https://www.openssl.org/docs/man1.1.1/man5/x509v3_config.html   
+- https://en.m.wikipedia.org/wiki/Public_key_certificate   
+- https://en.wikipedia.org/wiki/X.509  
+- https://www.openssl.org/docs/man1.1.1/man5/x509v3_config.html   
   
 ### RFC-k
-https://tools.ietf.org/html/rfc4519 - LDAP - benne a DN alatt felhasználható nevekkel (DC, CN, L, C, O, OU stb.)  
+- https://tools.ietf.org/html/rfc4519 - LDAP - benne a DN alatt felhasználható nevekkel (DC, CN, L, C, O, OU stb.)  
 
