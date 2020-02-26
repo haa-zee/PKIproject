@@ -34,6 +34,7 @@ CA-t.
 - https://pki-tutorial.readthedocs.io/en/latest/simple/index.html
 - https://roll.urown.net/ca/index.html
 - https://jamielinux.com/docs/openssl-certificate-authority/index.html
+- https://e-szigno.hu/tudasbazis/kriptografiai-bevezeto.html
 
 ### Manualok, wiki oldalak
 - https://en.m.wikipedia.org/wiki/Public_key_certificate   
