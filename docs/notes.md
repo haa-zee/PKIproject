@@ -23,9 +23,11 @@ Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanús
 - Privát kulcs készítés(4096 bit, jelszóval védett!)
 - Self-signed cert előállítása
 
-- [ ] Fontos lenne, de egyelőre nem tudom, hová kell tenni: **basicConstraints=critical,CA:TRUE,pathlen:0**  
-Vagy a rootCA ooenssl.cnf-be, vagy az intermediate-be. Érzésem szerint a rootéba, ott is a ca sectionbe, ezzel meggátolva, hogy az intermediate CA újabb CA tanúsítványt írjon alá.  
-- [x] Vajon mi van, ha a critical itt elmarad?  
+- [ ] Fontos lenne, de egyelőre nem tudom, hová kell tenni:<br> **basicConstraints=critical,CA:TRUE,pathlen:0**   <br>
+<s>Vagy a rootCA openssl.cnf-be, vagy az intermediate-be. Érzésem szerint a rootéba, ott is a ca sectionbe, ezzel meggátolva, hogy az intermediate CA újabb CA tanúsítványt írjon alá.</s> Természetesen a láncban utolsó CA (aki már nem írhat alá újabb CA tanúsítványt) előtti konfigjába
+kell, esetemben a rootCA-éba. Hogy ott pontosan hová, az még mindig nem tiszta,
+mert csak azáltala aláírt tanúsítványba kell bekerülnie, a selfsigned-be nem.  
+- [x] <s>Vajon mi van, ha a critical itt elmarad?</s>  
     A critical jelentősége annyi, hogy ha az így megjelölt extension-t a tanúsítványt használó applikáció nem ismeri fel, akkor nem fogadja el a tanúsítványt. Szabványos extension-ök esetében nincs jelentősége ([forrás](https://security.stackexchange.com/questions/30974/which-properties-of-a-x-509-certificate-should-be-critical-and-which-not))  
   
 
