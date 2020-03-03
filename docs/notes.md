@@ -27,8 +27,26 @@ Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanús
 - Könyvtár struktúra kialakítása (openssl.cnf [ ca ] section alapján - certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)<br>
 Itt a certs jelenléte nem igazán tiszta, sok helyen a newcerts és a certs ugyanarra 
 a könyvtárra hivatkozik.
-- Privát kulcs készítés(min. 4096 bit, jelszóval védett!)
-- Self-signed cert előállítása
+- Privát kulcs készítés(min. 4096 bit, jelszóval védett!), self signed cert előállítása<br>
+Ennek lépései:
+  - Kulcs készítés (`openssl genrsa ...`)<br>
+  Ehhez nem kell a config file
+  - CSR létrehozása (`openssl req -new ...`) - ehhez szükség lesz egy megfelelően
+  kitöltött konfig fájlra. Ehhez mintául szolgálhat a linuxra felrakott default openssl.cnf
+  vagy valamelyik tutorial állománya is, ha valaki így akarja felépíteni. (**TODO: összeszedni
+  a szükséges paramétereket**)
+  - A CSR fájlt aláírni a privát kulccsal. (`openssl ca -selfsign...`) - ehhez szintén kell konfig,
+  (**TODO: összeszedni a CA használathoz szükséges paramétereket, köztük kétféle x509v3 extension-nel, ha igaz, mert más kell a selfsignedhez és más az intermediate certificate aláírásához. Előbbinek nem kell a pathlen:0, utóbbihoz feltétlenül szükséges**)
+  <br>
+  - De... mindezt sokkal egyszerűbb előállítani egyetlen paranccsal: <br>
+  `openssl req -newkey rsa:4096 -keyout ... -x509 -utf8 -days 7330 -out ...`
+  Ez egymagában előállítja a privát kulcsot, jelszót kér hozzá, majd ebből generál 
+  egy self signed certificate-et. (ami kérdéses: milyen konfig fájl kell neki, kell-e a ca és a req secrion, valamint a különböző extension-ök? - szinte biztosan kell minden)
+  
+  
+
+
+
 
 #### Kérdések
 - [x] Fontos lenne, de egyelőre nem tudom, hová kell tenni:<br> **basicConstraints=critical,CA:TRUE,pathlen:0**   <br>
