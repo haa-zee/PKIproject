@@ -7,7 +7,9 @@ Van sok, például:
 - https://roll.urown.net/ca/index.html
 - https://jamielinux.com/docs/openssl-certificate-authority/index.html
 
-Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.
+Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.<br>
+Külön ciki, hogy sok szakkifejezést nem tudok normálisan magyarra fordítani, szóval...
+
 
 Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [ ] Merjek-e hinni olyan anyagnak, amelyikben a default_md helyén md5, sha1 szerepel?
@@ -41,9 +43,7 @@ Ennek lépései:
   `openssl req -newkey rsa:4096 -keyout ... -x509 -utf8 -days 7330 -out ...`
   Ez egymagában előállítja a privát kulcsot, jelszót kér hozzá, majd ebből generál 
   egy self signed certificate-et. (ami kérdéses: milyen konfig fájl kell neki, kell-e a ca és a req secrion, valamint a különböző extension-ök? - szinte biztosan kell minden)
-  
-  
-
+  - Nem elfelejteni a crl distribution point paramétert!!
 
 
 
@@ -52,6 +52,9 @@ Ennek lépései:
 <s>Vagy a rootCA openssl.cnf-be, vagy az intermediate-be. Érzésem szerint a rootéba, ott is a ca sectionbe, ezzel meggátolva, hogy az intermediate CA újabb CA tanúsítványt írjon alá.</s> Természetesen a láncban utolsó CA (aki már nem írhat alá újabb CA tanúsítványt) előtti konfigjába
 kell, esetemben a rootCA-éba. Hogy ott pontosan hová, az még mindig nem tiszta,
 mert csak az általa aláírt tanúsítványba kell bekerülnie, a selfsigned-be nem.  
+- [ ] Miért fogadja el az `openssl verify` akkor is a tanúsítványt, ha egy pathlen:0-t tartalmazó
+CA tanúsítványával van hitelesítve CA-ként? (már feltéve, hogy a basicConstraints=CA:true ezt
+jelenti..
 - [x] <s>Vajon mi van, ha a critical itt elmarad?</s>  
     A critical jelentősége annyi, hogy ha az így megjelölt extension-t a tanúsítványt használó applikáció nem ismeri fel, akkor nem fogadja el a tanúsítványt. Szabványos extension-ök esetében nincs jelentősége ([forrás](https://security.stackexchange.com/questions/30974/which-properties-of-a-x-509-certificate-should-be-critical-and-which-not))  
 - [ ] Ékezetes karakterekkel lehetnek gondok, ha nem figyelsz: a konfig fájlokban
@@ -59,7 +62,11 @@ fogalmam sincs, hogyan lehetne beállítani, hogy következetesen UTF-8 kódolá
 használjon. Pár parancsnak van -utf8 kapcsolója és _**elvileg**_ a konfigba írt name_opt = utf8 arra szolgál, hogy ha meg akarod jeleníteni egy UTF8 karaktereket tartalmazó
  tanúsítvány adatait, akkor ezzel fixen be lehet állítani, de nekem egyelőre nem működik
  
-
+- [ ] Vajon mi jelentősége van a titkosításhoz használt algoritmus kiválasztásának? 
+Mikor/miért érdemes RSA helyett mást használni?
+- [ ] mi mindent érdemes beállítani az extension-ökben? Root CA, intermediate CA esetében,
+illetve a végfelhasználói tanúsítvány (szerveré, useré stb.) esetében?
+- [ ] CRL disztribúciós címek? 
 
 ## intermediate CA
 - Könyvtár struktúra létrehozása (mint a root CA)
