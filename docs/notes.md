@@ -36,8 +36,7 @@ Ennek lépései:
   vagy valamelyik tutorial állománya is, ha valaki így akarja felépíteni. (**TODO: összeszedni
   a szükséges paramétereket**)
   - A CSR fájlt aláírni a privát kulccsal. (`openssl ca -selfsign...`) - ehhez szintén kell konfig,
-  (**TODO: összeszedni a CA használathoz szükséges paramétereket, köztük kétféle x509v3 extension-nel, ha igaz, mert más kell a selfsignedhez és más az intermediate certificate aláírásához. Előbbinek nem kell a pathlen:0, utóbbihoz feltétlenül szükséges**)
-  <br>
+  (**TODO: összeszedni a CA használathoz szükséges paramétereket, köztük kétféle x509v3 extension-nel, ha igaz, mert más kell a selfsignedhez és más az intermediate certificate aláírásához. Előbbinek nem kell a pathlen:0, utóbbihoz feltétlenül szükséges**)<br>
   - De... mindezt sokkal egyszerűbb előállítani egyetlen paranccsal: <br>
   `openssl req -newkey rsa:4096 -keyout ... -x509 -utf8 -days 7330 -out ...`
   Ez egymagában előállítja a privát kulcsot, jelszót kér hozzá, majd ebből generál 
