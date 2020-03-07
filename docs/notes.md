@@ -18,7 +18,8 @@ Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [ ] Az `openssl req` parancs elvileg képes self signed certificate előállítására, de... kérdés, hogy root CA esetén jó ötlet-e a használata? Ugyanis nem update-eli az index fájlt, nem nyúl a serial-hoz sem, csak generál egy privát kulcsot, meg egy self signed tanúsítványt, amelynek néhány paraméterét az openssl.cnf-ből veszi. Emiatt például nem lehet visszavonni a root certificate-et, ha kompromittálódna, mert a crl az index fájlból készül. Ugyanakkor... mivel a self signed tanúsítványt használnám a CRL aláírására is... ha a root CA kompromittálódott, akkor a CRL sem lesz hiteles. Akkor ezzel mit is lehet tenni?
 - [x] Hogyan lehetne az `openssl verify`-t működésre bírni, tesztkörnyezetben? Nem találja az aláírókat, akkor sem, ha paraméterként megkapja mindkét CA tanúsítványát.
 Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanúsítványt be kell "csomagolni" egy fájlba (PEM formátumú mindkettő, ezekből lesz egy PKCS#???)
-- [ ] A `man ca` azt írja, hogy az `openssl ca` parancs csak egy sample app... Akkor ne is használjam? 🤔
+- [ ] A `man ca` azt írja, hogy az `openssl ca` parancs csak egy sample app... Akkor ne is használjam? 🤔 
+Egy opció: ([DogTag](https://dogtagpki.org) )
   <br>
   <br>
 
@@ -26,7 +27,8 @@ Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanús
 ###
 #### Létrehozása
 
-- Könyvtár struktúra kialakítása (openssl.cnf [ ca ] section alapján - certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)<br>
+- Könyvtár struktúra kialakítása (openssl.cnf [ ca ] section alapján - certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)
+crlnumber (vagy 0000 vagy random értékkel feltöltve)<br>
 Itt a certs jelenléte nem igazán tiszta, sok helyen a newcerts és a certs ugyanarra 
 a könyvtárra hivatkozik.
 - Privát kulcs készítés(min. 4096 bit, jelszóval védett!), self signed cert előállítása<br>
