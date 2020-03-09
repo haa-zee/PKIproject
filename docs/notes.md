@@ -1,11 +1,21 @@
-# saját CA  
+# saját PKI  
+
+
+
+<br><br>
+Ezzel az egész irománnyal ne foglalkozz, csak jegyzetek a téma kapcsán, amit nem akarok elfelejteni.
+
+
 
 ## Tanácstalanság
+
+
 Vajon milyen tutorial információit lenne érdemes használni?
 Van sok, például:
 - https://pki-tutorial.readthedocs.io/en/latest/simple/index.html
 - https://roll.urown.net/ca/index.html
 - https://jamielinux.com/docs/openssl-certificate-authority/index.html
+- https://www.feistyduck.com/library/openssl-cookbook/
 
 Persze ennél jóval több van, de én csak ezeket nézegetem egyelőre.<br>
 Külön ciki, hogy sok szakkifejezést nem tudok normálisan magyarra fordítani, szóval...
@@ -19,7 +29,7 @@ Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [x] Hogyan lehetne az `openssl verify`-t működésre bírni, tesztkörnyezetben? Nem találja az aláírókat, akkor sem, ha paraméterként megkapja mindkét CA tanúsítványát.
 Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanúsítványt be kell "csomagolni" egy fájlba (PEM formátumú mindkettő, ezekből lesz egy PKCS#???)
 - [ ] A `man ca` azt írja, hogy az `openssl ca` parancs csak egy sample app... Akkor ne is használjam? 🤔 
-Egy opció: ([DogTag](https://dogtagpki.org) )
+Egy opció: [DogTag](https://dogtagpki.org) 
   <br>
   <br>
 
@@ -27,10 +37,15 @@ Egy opció: ([DogTag](https://dogtagpki.org) )
 ###
 #### Létrehozása
 
-- Könyvtár struktúra kialakítása (openssl.cnf [ ca ] section alapján - certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)
+- Könyvtár struktúra kialakítása (openssl.cnf [ ca ] section alapján - pl.: certs,newcerts(??),private,requests, index.txt, serial (random értékkel feltöltve)
 crlnumber (vagy 0000 vagy random értékkel feltöltve)<br>
-Itt a certs jelenléte nem igazán tiszta, sok helyen a newcerts és a certs ugyanarra 
-a könyvtárra hivatkozik.
+<s>Itt a certs jelenléte nem igazán tiszta, sok helyen a newcerts és a certs ugyanarra 
+a könyvtárra hivatkozik.</s> A newcerts az, ahová automatikusan bekerülnek az elkészített tanúsítványok, a név a sorozatszám (serial) +".pem" lesz.<br>
+A certs-be manuálisan kell az eddigi tapasztalataim szerint letenni az elkészült
+tanúsítványokat, tetszőleges névvel, amit könnyebb megjegyezni, mint a serial+".pem"-t.
+De ez nem biztos...<br>
+
+
 - Privát kulcs készítés(min. 4096 bit, jelszóval védett!), self signed cert előállítása<br>
 Ennek lépései:
   - Kulcs készítés (`openssl genrsa ...`)<br>
@@ -69,7 +84,10 @@ Mikor/miért érdemes RSA helyett mást használni?
 - [ ] mi mindent érdemes beállítani az extension-ökben? Root CA, intermediate CA esetében,
 illetve a végfelhasználói tanúsítvány (szerveré, useré stb.) esetében?
 - [ ] CRL disztribúciós címek? 
-
+- [ ] Van a .cnf fájlban egy certs nevű változó/paraméter. Ennek nem látom nyomát
+a manualokban (pl. man ca), ellenben a default települő (ubuntu-n) /etc/ssl/openssl.cnf
+fájlban szerepel a new_certs_dir mellett, a komment szerint hasonló funkcionalitással.
+Tényleg kell?
 ## intermediate CA
 - Könyvtár struktúra létrehozása (mint a root CA)
 - Privát kulcs készítése
