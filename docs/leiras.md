@@ -21,7 +21,10 @@ certificate. No és az említett mitm proxy miatt, ismereteim szerint, szükség
 hitelesen aláírt tanúsítványokra, amihez nem ismerek más lehetőséget, mint a saját
 CA-t. 
 ## 2. CA-k létrehozása  
-  
+### 2a Root CA
+
+### 2b Intermediate/subordinate CA
+
   
     
 

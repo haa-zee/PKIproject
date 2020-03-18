@@ -31,6 +31,13 @@ Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanús
 - [ ] A `man ca` azt írja, hogy az `openssl ca` parancs csak egy sample app... Akkor ne is használjam? 🤔 
 Egy opció: [DogTag](https://dogtagpki.org) 
   <br>
+- [x] Distinguished Name (DN) használatakor sok helyen felbukkan az E avagy emailAddress RDN (=Relative Distinguished Name), de ez amennyire értem, deprecate státuszú. Helyette 
+a SAN (=Subject Alternate Name) használata a javasolt. ([Forrás1](https://docs.oracle.com/cd/E19957-01/816-5531-10/app_dn.htm), [Forrás2](https://www.cryptosys.net/pki/manpki/pki_distnames.html))
+- [x] Apropó DN... sokáig kerestem, hogy mit lehet/kell itt megadni. A fenti két forrás alapján
+úgy tűnik, vannak értékek, amiket meg kell/illik adni (CN, C, L, ST, O, OU stb.) ugyanakkor
+bármely szabványos(???) előre definiált OID ([oid-info.com](oid-info.com)) használható, legalábbis
+az openssl toolok elfogadják. (böngészők, egyéb alkalmazások nem tudom, mit szólnak hozzá)
+ 
   <br>
 
 ## <u>root CA</u>
@@ -60,7 +67,11 @@ Ennek lépései:
   `openssl req -newkey rsa:4096 -keyout ... -x509 -utf8 -days 7330 -out ...`
   Ez egymagában előállítja a privát kulcsot, jelszót kér hozzá, majd ebből generál 
   egy self signed certificate-et. (ami kérdéses: milyen konfig fájl kell neki, kell-e a ca és a req secrion, valamint a különböző extension-ök? - szinte biztosan kell minden)
+  Azért ezzel gond is van: a jelek szerint nem vesz figyelembe egy csomó paramétert
+  a konfig fájlból, ezeket parancssorból kell átadni: például a létrehozott selfsigned
+  tanúsítvány érvényességi idejét biztosan...
   - Nem elfelejteni a crl distribution point paramétert!!
+  - CRL-nek is van lejárata, ami nem lehet hosszabb 30 nap/egy hónapnál ([követelmény/ajánlás/szabvány](https://www.cabforum.org/wp-content/uploads/Baseline_Requirements_V1.pdf))
 
 
 
