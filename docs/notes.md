@@ -29,7 +29,7 @@ Olvasgatva e témában merülnek fel olyan kérdések, hogy
 - [x] Hogyan lehetne az `openssl verify`-t működésre bírni, tesztkörnyezetben? Nem találja az aláírókat, akkor sem, ha paraméterként megkapja mindkét CA tanúsítványát.
 Ezt én rontottam el. Egyelőre nem teljesen tiszta a dolog, de a két CA tanúsítványt be kell "csomagolni" egy fájlba (PEM formátumú mindkettő, ezekből lesz egy PKCS#???)
 - [ ] A `man ca` azt írja, hogy az `openssl ca` parancs csak egy sample app... Akkor ne is használjam? 🤔 
-Egy opció: [DogTag](https://dogtagpki.org) 
+Egy opció: <s>[DogTag](https://dogtagpki.org)</s> linuxon például az xca nevű tool (dogtag felejtős: a saját oldalán hibás a certificate! Csak a redhat.com domainekre érvényes, a dogtagpki.org-ra nem)
   <br>
 - [x] Distinguished Name (DN) használatakor sok helyen felbukkan az E avagy emailAddress RDN (=Relative Distinguished Name), de ez amennyire értem, deprecate státuszú. Helyette 
 a SAN (=Subject Alternate Name) használata a javasolt. ([Forrás1](https://docs.oracle.com/cd/E19957-01/816-5531-10/app_dn.htm), [Forrás2](https://www.cryptosys.net/pki/manpki/pki_distnames.html))
